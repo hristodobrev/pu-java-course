@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -27,7 +28,11 @@ public class MyFrame extends JFrame {
 	int id = -1;
 
 	String[] genders = { "Мъж", "Жена" };
-
+	
+	JTabbedPane tab = new JTabbedPane();
+	JPanel personPanel = new JPanel();
+	JPanel carsPanel = new JPanel();
+	
 	JPanel topPanel = new JPanel();
 	JPanel middlePanel = new JPanel();
 	JPanel bottomPanel = new JPanel();
@@ -54,7 +59,7 @@ public class MyFrame extends JFrame {
 	public MyFrame() {
 		this.setSize(400, 600);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setLayout(new GridLayout(3, 1));
+		//this.setLayout(new GridLayout(3, 1));
 
 		topPanel.setLayout(new GridLayout(5, 2));
 		topPanel.add(firstNameLabel);
@@ -78,10 +83,15 @@ public class MyFrame extends JFrame {
 		bottomPanel.add(peopleTableScroll);
 		peopleTable.addMouseListener(new MouseAction());
 
-		this.add(topPanel);
-		this.add(middlePanel);
-		this.add(bottomPanel);
+		personPanel.add(topPanel);
+		personPanel.add(middlePanel);
+		personPanel.add(bottomPanel);
+		
+		tab.add(personPanel, "Persons");
+		tab.add(carsPanel, "Cars");
 
+		this.add(tab);
+		
 		refreshTable();
 
 		this.setVisible(true);
